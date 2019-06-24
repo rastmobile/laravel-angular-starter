@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   apiUrl: "http://193.36.61.146/news/api/auth"
+  // apiUrl: "http://193.36.61.146/sulax-backend/public/yonetim"
 };
 
 /*

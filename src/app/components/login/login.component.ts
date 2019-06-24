@@ -57,18 +57,19 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-
     this.loading = true;
     this.authenticationService
       .login(this.f.username.value, this.f.password.value)
       .subscribe(
         data => {
-          this.router.navigate([this.returnUrl]);
+        this.router.navigate([this.returnUrl]);
+         console.log("authenticationService");
+       console.log(data);
         },
         error => {
           this.error = error;
           this.loading = false;
-        }
+        } 
       );
   }
 }

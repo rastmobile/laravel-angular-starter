@@ -17,37 +17,22 @@ export class AuthenticationService {
           Accept: "application/json"
         })
       })
-      .subscribe(data => console.log(data));
+      .subscribe(data => {
+        console.log(data);
+      });
   }
 
   login(email: string, password: string) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        "Content-Type": "application/json; charset=utf-8",
-        Accept: "application/json"
-      })
-    };
-
     return this.http
-      .post<any>(
-        `${this.apiUrl}/login`,
-        { email, password },
-        {
-          headers: new HttpHeaders({
-            "Content-Type": "application/json; charset=utf-8",
-            Accept: "application/json"
-          })
-        }
-      )
+      .post<any>(`${this.apiUrl}/login`, { email, password })
       .pipe(
         map(user => {
-          debugger;
           // login successful if there's a jwt token in the response
           if (user && user.token) {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
+           
             localStorage.setItem("currentUser", JSON.stringify(user));
           }
-
           return user;
         })
       );
